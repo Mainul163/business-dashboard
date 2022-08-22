@@ -4,7 +4,7 @@ const LeftNav = () => {
     return (
         <div className='leftNavColor'>
             <div style={{paddingTop:'30px' ,textAlign:'center'}}>
-mainul islam
+{/* mainul islam */}
             </div>
         </div>
     );
