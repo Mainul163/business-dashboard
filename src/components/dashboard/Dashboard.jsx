@@ -1,11 +1,13 @@
-import React from 'react';
+import React from "react";
 
 const Dashboard = () => {
-    return (
-        <div>
-            dashboard
-        </div>
-    );
+  return (
+    <div>
+      <div>
+        <h2 style={{ fontWeight: "bold" }}>Dashboard</h2>
+      </div>
+    </div>
+  );
 };
 
 export default Dashboard;
