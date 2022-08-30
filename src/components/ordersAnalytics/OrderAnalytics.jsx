@@ -1,6 +1,8 @@
 import React from "react";
 import { Line } from "@ant-design/plots";
-import { Row, Col, Form, Button, Select, Input, DatePicker } from 'antd';
+import { Row, Col, Form, Button, Select, Input, DatePicker,Tag } from 'antd';
+import TableComponent from "../table/Table";
+import './OrderAnalytics.css'
 const OrderAnalytics = () => {
   const data = [{
     "name": "United Kingdom",
@@ -143,6 +145,43 @@ const OrderAnalytics = () => {
   const onFinish = (values) => {
     console.log(values);
   };
+  const columns = [
+    {
+      title: 'Year',
+      dataIndex: 'year',
+      key: 'year',
+      render: (year) => <Tag color="magenta">{year}</Tag>,
+    },{
+      title: 'Total Order',
+      dataIndex: 'totalOrder',
+      key: 'totalOrder',
+      render: (totalOrder) => <Tag color="orange">{totalOrder}</Tag>,
+    },{
+      title: 'Cancel Order',
+      dataIndex: 'cancelOrder',
+      key: 'cancelOrder',
+      render: (cancelOrder) => <Tag color="red">{cancelOrder}</Tag>,
+    },]
+    const dataSource=[
+      {
+        key:1,
+        year:2020,
+        totalOrder:1202,
+        cancelOrder:120
+      },
+      {
+        key:2,
+        year:2020,
+        totalOrder:1202,
+        cancelOrder:120
+      },
+      {
+        key:3,
+        year:2020,
+        totalOrder:1202,
+        cancelOrder:120
+      }
+    ]
   return (
     <div>
       <div>
@@ -186,6 +225,11 @@ const OrderAnalytics = () => {
               </Button>
             </Form.Item>
           </Form>
+        </Col>
+      </Row>
+      <Row justify="center" style={{marginTop:'100px'}}>
+        <Col xs={24} sm={24} md={24} lg={24} xl={11} xxl={11}>
+        <TableComponent columns={columns} data={dataSource}/>
         </Col>
       </Row>
     </div>
