@@ -3,6 +3,7 @@ import Header from '../header/Header';
 import { Row ,Col} from 'antd';
 import LeftNav from '../leftNav/LeftNav';
 import Home from '../home/Home';
+import Footer from '../footer/Footer';
 const Layout = () => {
     return (
         <div>
@@ -15,6 +16,7 @@ const Layout = () => {
              <Home/>
              </Col>
             </Row>
+            <Footer/>
         </div>
     );
 };

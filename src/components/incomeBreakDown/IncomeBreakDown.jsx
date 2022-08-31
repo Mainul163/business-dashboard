@@ -1,6 +1,7 @@
 import React from "react";
 import { Pie } from '@ant-design/plots';
-import { Row, Col, Form, Button, Select, Input, DatePicker,Tag } from 'antd';
+import { Row, Col, Form, Button,  Input, DatePicker,Tag } from 'antd';
+import TableComponent from './../table/Table';
 const IncomeBreakDown = () => {
 
   const layout = {
@@ -83,6 +84,38 @@ const IncomeBreakDown = () => {
     const onFinish = (values) => {
       console.log(values);
     };
+    const columns = [
+      {
+        title: 'Year',
+        dataIndex: 'year',
+        key: 'year',
+        render: (year) => <Tag color="magenta">{year}</Tag>,
+      },{
+        title: 'Income',
+        dataIndex: 'income',
+        key: 'income',
+        render: (income) => <Tag color="orange">{income}</Tag>,
+      }]
+      const dataSource=[
+        {
+          key:1,
+          year:2020,
+          income:1202,
+         
+        },
+        {
+          key:2,
+          year:2020,
+          income:1202,
+         
+        },
+        {
+          key:3,
+          year:2020,
+          income:1202,
+        
+        }
+      ]
   return (
     <div>
       <div>
@@ -124,6 +157,12 @@ const IncomeBreakDown = () => {
           </Form>
         </Col>
       </Row>
+      <Row justify="center" style={{marginTop:'100px'}}>
+        <Col xs={24} sm={24} md={24} lg={24} xl={11} xxl={11}>
+        <TableComponent columns={columns} data={dataSource} headerText={'Income Break Down Table'}/>
+        </Col>
+      </Row>
+   
     </div>
   );
 };

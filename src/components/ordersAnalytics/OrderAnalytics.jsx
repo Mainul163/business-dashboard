@@ -229,7 +229,7 @@ const OrderAnalytics = () => {
       </Row>
       <Row justify="center" style={{marginTop:'100px'}}>
         <Col xs={24} sm={24} md={24} lg={24} xl={11} xxl={11}>
-        <TableComponent columns={columns} data={dataSource}/>
+        <TableComponent columns={columns} data={dataSource} headerText={'Order Analytics Tablee'}/>
         </Col>
       </Row>
     </div>

@@ -34,7 +34,7 @@ const LeftNav = () => {
           element={OrderAnalytics}
           className={(navData) => (navData.isActive ? "active" : "link")}
         >
-          <PieChartOutlined /> Order Analytics
+          <LineChartOutlined /> Order Analytics
         </NavLink>
 
         <br />
@@ -44,7 +44,7 @@ const LeftNav = () => {
           element={IncomeBreakDown}
           className={(navData) => (navData.isActive ? "active" : "link")}
         >
-          <BarChartOutlined /> Income Break Down
+          <PieChartOutlined /> Income Break Down
         </NavLink>
         <br />
         <br />
@@ -53,7 +53,7 @@ const LeftNav = () => {
           element={IncomeDetails}
           className={(navData) => (navData.isActive ? "active" : "link")}
         >
-          <RiseOutlined /> Income Details
+          <BarChartOutlined />  Income Details
         </NavLink>
         <br />
         <br />
@@ -62,7 +62,7 @@ const LeftNav = () => {
           element={Earning}
           className={(navData) => (navData.isActive ? "active" : "link")}
         >
-          <LineChartOutlined /> Earning
+          <RiseOutlined /> Earning
         </NavLink>
         <br />
         <br />
