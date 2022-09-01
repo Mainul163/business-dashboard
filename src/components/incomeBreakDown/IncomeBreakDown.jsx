@@ -122,11 +122,11 @@ const IncomeBreakDown = () => {
         <h2 style={{ fontWeight: "bold" }}>Income Break Down</h2>
       </div>
 
-      <Row style={{ marginTop: '80px' }} gutter={[{ md: 8, lg: 8 }, 24]}>
+      <Row style={{ marginTop: '80px' }} justify='center' gutter={[{ md: 8, lg: 8 }, 24]}>
         <Col xs={24} sm={24} md={24} lg={24} xl={11} xxl={11}>
         <Pie {...config} />
         </Col>
-        <Col xs={24} sm={24} md={24} lg={11} xl={11} xxl={11} >
+        <Col xs={24} sm={24} md={24} lg={24} xl={11} xxl={11} >
        <div style={{textAlign:'center',marginLeft:'70px'}}>
        <h2 style={{ fontWeight: "bold" }}> Income Break Down Information</h2>
        </div>
@@ -156,12 +156,11 @@ const IncomeBreakDown = () => {
             </Form.Item>
           </Form>
         </Col>
-      </Row>
-      <Row justify="center" style={{marginTop:'100px'}}>
-        <Col xs={24} sm={24} md={24} lg={24} xl={11} xxl={11}>
+        <Col xs={24} sm={24} md={24} lg={24} xl={11} xxl={11}  style={{marginTop:'40px'}}>
         <TableComponent columns={columns} data={dataSource} headerText={'Income Break Down Table'}/>
         </Col>
       </Row>
+     
    
     </div>
   );

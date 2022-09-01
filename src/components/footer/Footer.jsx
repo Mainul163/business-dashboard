@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Image ,AutoComplete, Input } from 'antd';
+import { Row, Col, Image ,AutoComplete, Input,Collapse } from 'antd';
 
 
 import image from '../../assets/Alpha_Logo.webp'
@@ -11,13 +11,14 @@ import { FaFacebookF } from 'react-icons/fa';
 import { FaYoutube } from 'react-icons/fa';
 import { AiFillLinkedin } from 'react-icons/ai';
 const Footer = () => {
+    const { Panel } = Collapse;
     return (
         <div className='footerBody'>
             <Row justify='space-between' style={{ padding: '10px 0px' }}  >
                 <Col xs={24} sm={24} md={24} lg={24} xl={3} xxl={2} >
 
                 </Col>
-                <Col xs={24} sm={24} md={24} lg={24} xl={20} xxl={7} >
+                <Col xs={11} sm={11} md={11} lg={11} xl={6} xxl={7} style={{marginLeft:"10px"}}>
                     <Image
                         width={80}
                         src={image}
@@ -30,10 +31,12 @@ const Footer = () => {
                     </div>
                     <p>Copyright © Mainul All Rights Reserved</p>
                 </Col>
-                <Col xs={0} sm={0} md={0} lg={0} xl={3} xxl={0} >
+                <Col xs={0} sm={0} md={0} lg={0} xl={0} xxl={0} >
 
                 </Col>
-                <Col xs={24} sm={24} md={24} lg={24} xl={20} xxl={6} >
+
+                
+                <Col xs={0} sm={0} md={0} lg={0} xl={6} xxl={6} >
                     <h2>Our Pages</h2>
 
                     <NavLink
@@ -92,10 +95,10 @@ const Footer = () => {
                     </NavLink>
                 </Col>
 
-                <Col xs={0} sm={0} md={0} lg={0} xl={3} xxl={0} >
+                <Col xs={0} sm={0} md={0} lg={0} xl={0} xxl={0} >
 
                 </Col>
-                <Col xs={24} sm={24} md={24} lg={24} xl={20} xxl={6} >
+                <Col xs={11} sm={11} md={11} lg={11} xl={6} xxl={6} >
                     <h2>Sign up for our e-mail to get latest news.</h2>
                     <AutoComplete
                             dropdownMatchSelectWidth={252}

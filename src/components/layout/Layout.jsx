@@ -9,7 +9,7 @@ const Layout = () => {
         <div>
             <Header/>
             <Row>
-             <Col xs={0} sm={0} mg={4} lg={4} xl={4} xxl={3}>
+             <Col xs={0} sm={0} mg={0} lg={0} xl={4} xxl={3}>
              <LeftNav/>
              </Col>
              <Col xs={24} sm={24} mg={20} lg={20} xl={20} xxl={21}>

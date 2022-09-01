@@ -157,11 +157,11 @@ const IncomeDetails = () => {
       </div>
 
 
-      <Row style={{ marginTop: '80px' }} gutter={[{ md: 8, lg: 8 }, 24]}>
+      <Row style={{ marginTop: '80px' }} justify='center' gutter={[{ md: 8, lg: 8 }, 24]}>
         <Col xs={24} sm={24} md={24} lg={24} xl={11} xxl={11}>
         <Column {...config} />
         </Col>
-        <Col xs={24} sm={24} md={24} lg={11} xl={11} xxl={11} >
+        <Col xs={24} sm={24} md={24} lg={24} xl={11} xxl={11} >
           <div style={{ textAlign: 'center', marginLeft: '70px' }}>
             <h2 style={{ fontWeight: "bold" }}> Income Details Information</h2>
           </div>
@@ -196,12 +196,11 @@ const IncomeDetails = () => {
             </Form.Item>
           </Form>
         </Col>
-      </Row>
-      <Row justify="center" style={{marginTop:'100px'}}>
-        <Col xs={24} sm={24} md={24} lg={24} xl={11} xxl={11}>
-        <TableComponent columns={columns} data={dataSource} headerText={'Income Details Tablee'}/>
+        <Col xs={24} sm={24} md={24} lg={24} xl={11} xxl={11}  style={{marginTop:'40px'}}>
+        <TableComponent columns={columns} data={dataSource} headerText={'Income Details Table'}/>
         </Col>
       </Row>
+    
     </div>
   );
 };
