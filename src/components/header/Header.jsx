@@ -1,11 +1,31 @@
-import React from 'react';
-import { Col, Row, Tooltip, Avatar, Image, AutoComplete, Input } from 'antd';
+import React, { useState } from 'react';
+import { Col, Row, Tooltip, Avatar, Image, AutoComplete, Input, Button, Drawer } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import logo from '../../assets/Alpha_Logo.webp'
 import './Header.css'
 const Header = () => {
+    const [open, setOpen] = useState(false);
+
+  const showDrawer = () => {
+    setOpen(!open);
+   
+  };
+
+  const onClose = () => {
+    setOpen(false);
+  };
+  console.log('drawer',open);
     return (
         <>
+                   <Button type="primary" onClick={showDrawer}>
+          Open
+        </Button>
+        <Drawer title="Basic Drawer" placement="right" onClose={onClose} open={open}>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+      </Drawer>
+                 
             <Row justify="space-around" align="middle" className='headerColor'>
                 <Col span={11} className='logoText' style={{ display: 'flex', alignItems: 'center' }}>
                     <div>
@@ -14,6 +34,10 @@ const Header = () => {
                             src={logo}
                         />
                     </div>
+
+                    <div>
+         
+           </div>
                     <div className='logeHeader'>
                         <h4 style={{ paddingLeft: '20px' }}>Business Development Dashboard</h4>
                     </div>

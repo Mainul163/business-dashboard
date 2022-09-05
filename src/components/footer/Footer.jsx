@@ -18,7 +18,7 @@ const Footer = () => {
                 <Col xs={24} sm={24} md={24} lg={24} xl={3} xxl={2} >
 
                 </Col>
-                <Col xs={11} sm={11} md={11} lg={11} xl={6} xxl={7} style={{marginLeft:"10px"}}>
+                <Col xs={24} sm={24} md={11} lg={11} xl={6} xxl={7} style={{marginLeft:"10px"}}>
                     <Image
                         width={80}
                         src={image}
@@ -98,7 +98,7 @@ const Footer = () => {
                 <Col xs={0} sm={0} md={0} lg={0} xl={0} xxl={0} >
 
                 </Col>
-                <Col xs={11} sm={11} md={11} lg={11} xl={6} xxl={6} >
+                <Col xs={24} sm={24} md={11} lg={11} xl={6} xxl={6} >
                     <h2>Sign up for our e-mail to get latest news.</h2>
                     <AutoComplete
                             dropdownMatchSelectWidth={252}
