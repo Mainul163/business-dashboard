@@ -1,25 +1,48 @@
-import React from "react";
-import "./LeftNav.css";
+import React,{useState} from 'react';
+import { Drawer ,Space} from 'antd';
+import { LeftCircleOutlined } from '@ant-design/icons';
 import {
-  AreaChartOutlined,
-  LineChartOutlined,
-  BarChartOutlined,
-  RiseOutlined,
-  PieChartOutlined,
-  BarsOutlined,
-} from "@ant-design/icons";
-import { NavLink } from "react-router-dom";
-import Dashboard from "./../dashboard/Dashboard";
-import Earning from "./../earning/Earning";
-import IncomeBreakDown from "../incomeBreakDown/IncomeBreakDown";
-import IncomeDetails from "../incomeDetails/IncomeDetails";
-import OrderAnalytics from "../ordersAnalytics/OrderAnalytics";
-import ProductList from "../productList/ProductList";
+    AreaChartOutlined,
+    LineChartOutlined,
+    BarChartOutlined,
+    RiseOutlined,
+    PieChartOutlined,
+    BarsOutlined,
+  } from "@ant-design/icons";
+  import { NavLink } from "react-router-dom";
+import './Drawer.css'
+import Dashboard from './../dashboard/Dashboard';
+import OrderAnalytics from './../ordersAnalytics/OrderAnalytics';
+import IncomeBreakDown from './../incomeBreakDown/IncomeBreakDown';
+import IncomeDetails from './../incomeDetails/IncomeDetails';
+import Earning from './../earning/Earning';
+import ProductList from './../productList/ProductList';
+const DrawerItem = ({open,setOpen,onClose}) => {
+    // const [close, setClose] = useState(false);
 
-const LeftNav = () => {
-  return (
-    <div className="leftNavColor">
-      <div style={{ paddingTop: "30px" }}>
+
+
+
+  
+
+ 
+ 
+    return (
+        <div>
+     <Drawer
+                title="Business Dashboard"
+                placement="left"
+                closable={false}
+                onClose={onClose}
+                visible={open}
+                extra={
+                    <Space>
+                      <LeftCircleOutlined onClick={onClose} style={{color:"red",fontSize:'30px'}}/> 
+                 
+                    </Space>
+                  }
+            >
+ <div style={{ paddingTop: "30px" }}>
         <NavLink
           to="/"
           element={Dashboard}
@@ -75,8 +98,11 @@ const LeftNav = () => {
           <BarsOutlined /> Product List
         </NavLink>
       </div>
-    </div>
-  );
+            </Drawer>
+
+          
+        </div>
+    );
 };
 
-export default LeftNav;
+export default DrawerItem;
