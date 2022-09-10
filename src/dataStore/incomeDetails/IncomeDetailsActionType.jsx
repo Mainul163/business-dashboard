@@ -1,0 +1,1 @@
+export const POST_INCOMEDETAILS_DATA='post_incomeDetails_data'

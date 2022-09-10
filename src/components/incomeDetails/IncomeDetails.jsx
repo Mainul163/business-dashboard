@@ -2,7 +2,13 @@ import React from "react";
 import { Column } from '@ant-design/plots';
 import { Row, Col, Form, Button, Select, Input, DatePicker, Tag } from 'antd';
 import TableComponent from './../table/Table';
+import moment from "moment";
+import { useDispatch } from "react-redux";
+import { post_dataOfIncomeDetails } from "../../dataStore/incomeDetails/IncomeDetailsAction";
+
 const IncomeDetails = () => {
+  const [form] = Form.useForm();
+  const dispatch=useDispatch()
   const layout = {
     labelCol: {
       xs: { span: 20 },
@@ -108,8 +114,16 @@ const IncomeDetails = () => {
       ],
     },
   };
-  const onFinish = (values) => {
-    console.log(values);
+  function disabledDate(current) {
+    // Can not select days before today and today
+    return current && current > moment().startOf('day');
+  }
+  const onFinish = async(values) => {
+    const test=moment(values?.year).format('YYYY');
+    values.year=test
+   
+     dispatch(await post_dataOfIncomeDetails(values))
+     form.resetFields();
   };
 
   const columns = [
@@ -174,6 +188,7 @@ const IncomeDetails = () => {
             }}
 
             size='large'
+            form={form} 
           >
 
             <Form.Item label="Order Type" name='orderType' rules={[{ required: true, message: 'Please Fill Up Your Option!' }]}>
@@ -187,7 +202,7 @@ const IncomeDetails = () => {
               <Input />
             </Form.Item>
             <Form.Item label="Year" name='year' rules={[{ required: true, message: 'Please Fill Up Your Input!' }]}>
-              <DatePicker picker="year" />
+              <DatePicker picker="year"  disabledDate={disabledDate} />
             </Form.Item>
             <Form.Item {...tailFormItemLayout}>
               <Button type="primary" htmlType="submit">
