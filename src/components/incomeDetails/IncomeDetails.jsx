@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Column } from '@ant-design/plots';
 import { Row, Col, Form, Button, Select, Input, DatePicker, Tag } from 'antd';
 import TableComponent from './../table/Table';
 import moment from "moment";
-import { useDispatch } from "react-redux";
-import { post_dataOfIncomeDetails } from "../../dataStore/incomeDetails/IncomeDetailsAction";
+import { useDispatch, useSelector } from "react-redux";
+import { get_dataOfIncomeDetails, post_dataOfIncomeDetails } from "../../dataStore/incomeDetails/IncomeDetailsAction";
+import errorMessage from './../message/ErrorMessage';
 
 const IncomeDetails = () => {
   const [form] = Form.useForm();
-  const dispatch=useDispatch()
+  const incomeDetailsList = useSelector(data => data?.incomeDetailsList)
+  const dispatch = useDispatch()
   const layout = {
     labelCol: {
       xs: { span: 20 },
@@ -51,79 +53,58 @@ const IncomeDetails = () => {
     },
   };
 
-  const data = [
-    {
-      name: 'London',
-      year: 2020,
-      月均降雨量: 18.9,
-    },
-    {
-      name: 'London',
-      year: 2021,
-      value: 28.8,
-    },
-    {
-      name: 'London',
-      year: 2022,
-      value: 39.3,
-    },
-    {
-      name: 'Berlin',
-      year: 2019,
-      value: 34.5,
-    },
-    {
-      name: 'Berlin',
-      year: 2020,
-      value: 99.7,
-    },
-    {
-      name: 'Berlin',
-      year: 2021,
-      value: 52.6,
-    },
-    {
-      name: 'Berlin',
-      year: 2022,
-      value: 35.5,
-    },
-  ]
+  const incomeDetailsFun = async () => {
+    dispatch(await get_dataOfIncomeDetails())
+  }
+  useEffect(() => {
+    incomeDetailsFun()
+  }, [incomeDetailsList?.incomeDetails])
+
+  const data = incomeDetailsList?.incomeDetails
   const config = {
     data,
     isGroup: true,
     xField: 'year',
-    yField: 'value',
-    seriesField: 'name',
+    yField: 'amount',
+    seriesField: 'orderType',
 
-    
+
     label: {
-    
+
       position: 'middle',
-      
+
       layout: [
-     
+
         {
           type: 'interval-adjust-position',
-        }, 
+        },
         {
           type: 'interval-hide-overlap',
-        }, 
+        },
         {
           type: 'adjust-color',
         },
       ],
     },
   };
-  function disabledDate(current) {
+  const disabledDate = (current) => {
     // Can not select days before today and today
     return current && current > moment().startOf('day');
   }
-  const onFinish = async(values) => {
-    const test=moment(values?.year).format('YYYY');
-    values.year=test
-   
-     dispatch(await post_dataOfIncomeDetails(values))
-     form.resetFields();
+  const onFinish = async (values) => {
+    const test = moment(values?.year).format('YYYY');
+    values.year = test
+
+    if (isNaN(parseInt(values.amount)) === true) {
+      errorMessage('your amount not a number')
+
+    } else {
+
+
+      dispatch(await post_dataOfIncomeDetails(values))
+      form.resetFields();
+    }
+
   };
 
   const columns = [
@@ -132,38 +113,38 @@ const IncomeDetails = () => {
       dataIndex: 'year',
       key: 'year',
       render: (year) => <Tag color="magenta">{year}</Tag>,
-    },{
+    }, {
       title: 'Total Income',
       dataIndex: 'totalincome',
       key: 'totalincome',
       render: (totalOrder) => <Tag color="orange">{totalOrder}</Tag>,
-    },{
+    }, {
       title: 'Pending',
       dataIndex: 'pending',
       key: 'pending',
       render: (cancelOrder) => <Tag color="red">{cancelOrder}</Tag>,
     },]
 
-    const dataSource=[
-      {
-        key:1,
-        year:2020,
-        totalincome:1202,
-        pending:120
-      },
-      {
-        key:2,
-        year:2020,
-        totalincome:1202,
-        pending:120
-      },
-      {
-        key:3,
-        year:2020,
-        totalincome:1202,
-        pending:120
-      }
-    ]
+  const dataSource = [
+    {
+      key: 1,
+      year: 2020,
+      totalincome: 1202,
+      pending: 120
+    },
+    {
+      key: 2,
+      year: 2020,
+      totalincome: 1202,
+      pending: 120
+    },
+    {
+      key: 3,
+      year: 2020,
+      totalincome: 1202,
+      pending: 120
+    }
+  ]
   return (
     <div>
       <div>
@@ -173,7 +154,7 @@ const IncomeDetails = () => {
 
       <Row style={{ marginTop: '80px' }} justify='center' gutter={[{ md: 8, lg: 8 }, 24]}>
         <Col xs={24} sm={24} md={24} lg={24} xl={11} xxl={11}>
-        <Column {...config} />
+          <Column {...config} />
         </Col>
         <Col xs={24} sm={24} md={24} lg={24} xl={11} xxl={11} >
           <div style={{ textAlign: 'center', marginLeft: '70px' }}>
@@ -188,21 +169,21 @@ const IncomeDetails = () => {
             }}
 
             size='large'
-            form={form} 
+            form={form}
           >
 
             <Form.Item label="Order Type" name='orderType' rules={[{ required: true, message: 'Please Fill Up Your Option!' }]}>
               <Select>
-                <Select.Option value="total order">Total Income</Select.Option>
-                <Select.Option value="cancel order">Pending</Select.Option>
+                <Select.Option value="total income">Total Income</Select.Option>
+                <Select.Option value="pending">Pending</Select.Option>
               </Select>
             </Form.Item>
 
-            <Form.Item label="Amount" name='amount' rules={[{ required: true, message: 'Please Fill Up Your Input!' }]}>
+            <Form.Item label="Amount" name='amount' rules={[{ required: true, message: 'Please Fill Up Your Input & input should be number !' }]}>
               <Input />
             </Form.Item>
             <Form.Item label="Year" name='year' rules={[{ required: true, message: 'Please Fill Up Your Input!' }]}>
-              <DatePicker picker="year"  disabledDate={disabledDate} />
+              <DatePicker picker="year" disabledDate={disabledDate} />
             </Form.Item>
             <Form.Item {...tailFormItemLayout}>
               <Button type="primary" htmlType="submit">
@@ -211,11 +192,11 @@ const IncomeDetails = () => {
             </Form.Item>
           </Form>
         </Col>
-        <Col xs={24} sm={24} md={24} lg={24} xl={11} xxl={11}  style={{marginTop:'40px'}}>
-        <TableComponent columns={columns} data={dataSource} headerText={'Income Details Table'}/>
+        <Col xs={24} sm={24} md={24} lg={24} xl={11} xxl={11} style={{ marginTop: '40px' }}>
+          <TableComponent columns={columns} data={dataSource} headerText={'Income Details Table'} />
         </Col>
       </Row>
-    
+
     </div>
   );
 };
