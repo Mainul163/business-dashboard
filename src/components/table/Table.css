@@ -1,3 +1,10 @@
+
+.paginationStyle{
+  display: flex;
+  justify-content: flex-end;;
+  margin-top: 10px;
+}
+
 .ant-table table {
     width: 100%;
     text-align: center !important;
