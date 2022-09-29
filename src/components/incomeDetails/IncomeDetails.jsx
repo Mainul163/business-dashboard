@@ -114,37 +114,18 @@ const IncomeDetails = () => {
       key: 'year',
       render: (year) => <Tag color="magenta">{year}</Tag>,
     }, {
-      title: 'Total Income',
-      dataIndex: 'totalincome',
-      key: 'totalincome',
-      render: (totalOrder) => <Tag color="orange">{totalOrder}</Tag>,
+      title: 'Amount',
+      dataIndex: 'amount',
+      key: 'amount',
+      render: (totalOrder) => <Tag color="orange">{totalOrder} BDT</Tag>,
     }, {
-      title: 'Pending',
-      dataIndex: 'pending',
-      key: 'pending',
+      title: 'Order Type',
+      dataIndex: 'orderType',
+      key: 'orderType',
       render: (cancelOrder) => <Tag color="red">{cancelOrder}</Tag>,
     },]
 
-  const dataSource = [
-    {
-      key: 1,
-      year: 2020,
-      totalincome: 1202,
-      pending: 120
-    },
-    {
-      key: 2,
-      year: 2020,
-      totalincome: 1202,
-      pending: 120
-    },
-    {
-      key: 3,
-      year: 2020,
-      totalincome: 1202,
-      pending: 120
-    }
-  ]
+ 
   return (
     <div>
       <div>
@@ -193,7 +174,7 @@ const IncomeDetails = () => {
           </Form>
         </Col>
         <Col xs={24} sm={24} md={24} lg={24} xl={11} xxl={11} style={{ marginTop: '40px' }}>
-          <TableComponent columns={columns} data={dataSource} headerText={'Income Details Table'} />
+          <TableComponent columns={columns} data={incomeDetailsList?.incomeDetails} headerText={'Income Details Table'} />
         </Col>
       </Row>
 
