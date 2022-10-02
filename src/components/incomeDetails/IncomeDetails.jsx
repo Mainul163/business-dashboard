@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import { Column } from '@ant-design/plots';
 import { Row, Col, Form, Button, Select, Input, DatePicker, Tag } from 'antd';
 import TableComponent from './../table/Table';
@@ -6,8 +6,11 @@ import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import { get_dataOfIncomeDetails, post_dataOfIncomeDetails } from "../../dataStore/incomeDetails/IncomeDetailsAction";
 import errorMessage from './../message/ErrorMessage';
+import PaginationComponent from "../pagination/PaginationComponent";
 
 const IncomeDetails = () => {
+  const [current, setCurrent] = useState(1);
+  const [pageSize, setPageSize] = useState(3);
   const [form] = Form.useForm();
   const incomeDetailsList = useSelector(data => data?.incomeDetailsList)
   const dispatch = useDispatch()
@@ -52,13 +55,17 @@ const IncomeDetails = () => {
       },
     },
   };
-
+const onChange= async(page, newPageSize)=>{
+ dispatch(await get_dataOfIncomeDetails())
+console.log()
+}
   const incomeDetailsFun = async () => {
     dispatch(await get_dataOfIncomeDetails())
   }
   useEffect(() => {
     incomeDetailsFun()
   }, [incomeDetailsList?.incomeDetails])
+   
 
   const data = incomeDetailsList?.incomeDetails
   const config = {
@@ -175,6 +182,7 @@ const IncomeDetails = () => {
         </Col>
         <Col xs={24} sm={24} md={24} lg={24} xl={11} xxl={11} style={{ marginTop: '40px' }}>
           <TableComponent columns={columns} data={incomeDetailsList?.incomeDetails} headerText={'Income Details Table'} />
+          <PaginationComponent total={incomeDetailsList?.incomeDetails?.length} current={current} pageSize={pageSize} setCurrent={setCurrent} setPageSize={setPageSize} onChange={onChange}/>
         </Col>
       </Row>
 

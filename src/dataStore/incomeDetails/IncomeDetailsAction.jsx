@@ -8,8 +8,8 @@ import { GET_INCOMEDETAILS_DATA, POST_INCOMEDETAILS_DATA } from './IncomeDetails
 
 //******************** get income details data ************************* */
 
-export const get_dataOfIncomeDetails=async()=>{
-    
+export const get_dataOfIncomeDetails=async(current,pageSize)=>{
+    console.log(current,pageSize);
     const incomeGetDataInfo=await axiosBaseUrl.get('incomedetails').then(res=>res).catch(error=>console.log(error))
     if(incomeGetDataInfo.status===200){
    
