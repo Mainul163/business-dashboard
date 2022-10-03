@@ -8,8 +8,8 @@ import { GET_INCOMEDETAILS_DATA, POST_INCOMEDETAILS_DATA } from './IncomeDetails
 
 //******************** get income details data ************************* */
 
-export const get_dataOfIncomeDetails=async(current,pageSize)=>{
-    console.log(current,pageSize);
+export const get_dataOfIncomeDetails=async(currentData)=>{
+    console.log(currentData);
     const incomeGetDataInfo=await axiosBaseUrl.get('incomedetails').then(res=>res).catch(error=>console.log(error))
     if(incomeGetDataInfo.status===200){
    
@@ -30,7 +30,7 @@ export const get_dataOfIncomeDetails=async(current,pageSize)=>{
 export const post_dataOfIncomeDetails=async(data)=>{
     
    const incomeInfo=await axiosBaseUrl.post('incomedetails',data).then(res=>res).catch(error=>console.log(error))
-  console.log(incomeInfo);
+
    if(incomeInfo.status===200){
     successMessage('your income details information submit successfully')
    }else{

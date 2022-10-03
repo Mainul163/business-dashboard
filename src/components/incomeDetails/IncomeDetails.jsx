@@ -9,7 +9,7 @@ import errorMessage from './../message/ErrorMessage';
 import PaginationComponent from "../pagination/PaginationComponent";
 
 const IncomeDetails = () => {
-  const [current, setCurrent] = useState(1);
+  const [current,setCurrent]=useState(1)
   const [pageSize, setPageSize] = useState(3);
   const [form] = Form.useForm();
   const incomeDetailsList = useSelector(data => data?.incomeDetailsList)
@@ -55,18 +55,14 @@ const IncomeDetails = () => {
       },
     },
   };
-const onChange= async(page, newPageSize)=>{
- dispatch(await get_dataOfIncomeDetails())
-console.log()
-}
-  const incomeDetailsFun = async () => {
+
+  let incomeDetailsFun = async () => {
     dispatch(await get_dataOfIncomeDetails())
   }
+
   useEffect(() => {
     incomeDetailsFun()
-  }, [incomeDetailsList?.incomeDetails])
-   
-
+  }, [])
   const data = incomeDetailsList?.incomeDetails
   const config = {
     data,
@@ -106,8 +102,6 @@ console.log()
       errorMessage('your amount not a number')
 
     } else {
-
-
       dispatch(await post_dataOfIncomeDetails(values))
       form.resetFields();
     }
@@ -182,7 +176,7 @@ console.log()
         </Col>
         <Col xs={24} sm={24} md={24} lg={24} xl={11} xxl={11} style={{ marginTop: '40px' }}>
           <TableComponent columns={columns} data={incomeDetailsList?.incomeDetails} headerText={'Income Details Table'} />
-          <PaginationComponent total={incomeDetailsList?.incomeDetails?.length} current={current} pageSize={pageSize} setCurrent={setCurrent} setPageSize={setPageSize} onChange={onChange}/>
+          <PaginationComponent total={incomeDetailsList?.incomeDetails?.length} current={current} pageSize={pageSize} setCurrent={setCurrent} setPageSize={setPageSize} />
         </Col>
       </Row>
 
