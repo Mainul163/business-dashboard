@@ -1,17 +1,15 @@
-.leftNavColor{
+.footerBody{
     background-color: rgb(240, 240, 240);
-    height: 1000px;
-    display: flex;
-    justify-content: center;
 }
 .link {
     text-decoration: none;
     color: black;
-    
+   
   }
   
   .active {
     text-decoration: none;
     color: blue;
+   
     
   }
